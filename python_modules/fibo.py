@@ -1,3 +1,4 @@
+
 #!/usr/bin/python3
 
 def fib(n):  # 定义到 n 的斐波那契数列
