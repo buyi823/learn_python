@@ -5,9 +5,12 @@ import pprint, pickle
 pkl_file = open('data.pkl', 'rb')
 
 data1 = pickle.load(pkl_file)
-pprint.pprint(data1)
+print(data1)
 
+print('-----------------')
 data2 = pickle.load(pkl_file)
-pprint.pprint(data2)
+print(data2)
+data3 = pickle.load(pkl_file)
+print(data3)
 
 pkl_file.close()
