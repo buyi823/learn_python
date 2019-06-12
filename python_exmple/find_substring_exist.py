@@ -6,5 +6,6 @@ def check(string, sub_str):
     else:
         print("存在")
 
-
+string = "www.runoob.com"
+sub_str ="runoob"
 check(string, sub_str)
