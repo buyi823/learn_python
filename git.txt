@@ -1,0 +1,11 @@
+First use:
+git init
+git add test.txt
+git commit -m "first commit"
+git remote add origin https://github.com/buyi823
+git pull --rebase origin master /通过命令进行代码合并【注：pull=fetch+merge]
+git push -u origin master
+
+Clone:
+
+
