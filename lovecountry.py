@@ -4,7 +4,7 @@ setup(600,400,0,0) #设定大小，四个参数：宽度、高度、起始点X�
 bgcolor('red')  # 背景色红色
 fillcolor('yellow') #线条及填充颜色设为黄色
 color('yellow')
-speed(10) # 画笔运行速度
+speed(8) # 画笔运行速度
 
 begin_fill() #开始填充
 up() # 提起画笔，此时移动画笔不会进行绘画
