@@ -11,5 +11,12 @@ git remote rm origin
 添加新的远程仓库，以https的形式：
 git remote add origin https://github.com/unlimitbladeworks/Data-Struts-Learning.git
 
+回滚
+git log
+git reset --hard <commit log>
+git push -f origin master
+
+
+
 
 
