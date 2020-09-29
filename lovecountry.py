@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from turtle import *
 
 setup(600,400,0,0) #设定大小，四个参数：宽度、高度、起始点X值，Y值
