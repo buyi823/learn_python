@@ -7,7 +7,7 @@ import os, datetime
 from pathlib import Path
 
 
-with os.scandir('/home/blaine/buyi/learn_python') as entries:
+with os.scandir('D:/buyi_prac/Python_100') as entries:
     for entry in entries:
         info = entry.stat()
         print(info.st_mtime) # 以时间戳的方式输出
@@ -39,7 +39,7 @@ def convert_date(timestamp, format='%Y-%m-%d %H:%M:%S'):
     return dt.strftime(format)                                                    
 
 
-basepath = Path('/home/blaine/buyi/learn_python')                                                   
+basepath = Path('D:/buyi_prac/Python_100')                                                   
 for entry in basepath.iterdir():
     if entry.is_file():
         info = entry.stat()                                                           
