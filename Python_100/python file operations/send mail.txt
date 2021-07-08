@@ -1,0 +1,4 @@
+sanity 收件人，SPM，PDM，RD team leader，抄送：各个team leader 的leader 和QA
+
+feature 下次不用发这么多人，收件人就 SPM，PDM，ux owner，RD owner，抄送他们对应的leader  和QA 的人就可以
+
