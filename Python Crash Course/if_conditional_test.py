@@ -45,10 +45,12 @@ else:
     
 # 为了让代码更简洁可以写成下面的：
 age = 12
+
 if age < 4:
     price = 0
 elif age < 18:
     price = 25
 else:
     price = 40
+    
 print(f"Your admassion cost is ${price}.")
