@@ -3,7 +3,8 @@
 # By Blaine 2021-09-07 16:00
 # functions
 
-def greet_user():
-    print('hello')
+def greet_user(username):
+    '''docstring 显示问候语'''
+    print(f"Hello, {username.title()}")
 
-greet_user()
+greet_user('jesse!')
