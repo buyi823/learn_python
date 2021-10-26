@@ -7,7 +7,7 @@
 party_guys = ['Michale', 'John', 'Chris', 'Elizabeth', 'Phoebe', 'Rachel']
 # 这种输出也可以，输出带括号
 print(f'I want to invite {party_guys[0], party_guys[2], party_guys[4]}')
-print(f'I want to invite {party_guys[0]},{party_guys[2]} and {party_guys[4]}')
+print(f'I want to invite {party_guys[0]}, {party_guys[2]} and {party_guys[4]}')
 party_guys[0] = 'Harry'
 print(f'But Michale couldn\'t come, so I decided to invite {party_guys[0]},{party_guys[2]} and {party_guys[4]}')
 
