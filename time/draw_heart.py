@@ -12,7 +12,7 @@ def curve():
         turtle.forward(1*sizeh)
 
 turtle.speed(0)
-turtle.color("red", "green")
+turtle.color("red", "red")
 turtle.begin_fill()
 turtle.left(140)
 turtle.forward(111.65 * sizeh)
