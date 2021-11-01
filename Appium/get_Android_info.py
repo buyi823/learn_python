@@ -22,3 +22,5 @@ appPackage_Activity = os.popen('adb shell dumpsys activity | findstr "mResume"')
 print(appPackage_Activity.lstrip()) #将字符前面空格删除掉
 
 
+
+
