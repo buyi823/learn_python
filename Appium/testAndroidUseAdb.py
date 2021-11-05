@@ -14,7 +14,12 @@ time.sleep(2)
 os.popen('adb shell input keyevent 210')
 
 app = 'calculator'
+time.sleep(2)
 appPackage_Activity = os.popen('adb shell dumpsys activity | findstr "mResume"').read()
+
+# -*- coding: UTF-8 -*-
+# By Blaine 2021-11-04 17:05
+# 循环抓adb log
 
 if app in appPackage_Activity:
     print('Open calculator successfully.')
