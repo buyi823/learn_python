@@ -79,6 +79,28 @@ else:
 # y=525).move_to(x=750, y=825).move_to(x=450, y=825).move_to(x=150,
 # y=825).move_to(x=450, y=1125).release().perform()
 
+# 获取元素的方法
+# driver.find_element_by_id()
+# driver.find_element_by_name()
+# driver.find_element_by_class_name()
+# driver.find_element_by_tag_name()
+# driver.find_element_link_text()
+# driver.find_element_partial_link_text()
+# driver.find_element_by_accessibility_id()
+# driver.find_elements_by_accessibility_id()
+# driver.find_element_by_xpath()
+# driver.find_element_by_css_selector()
+# driver.find_element_by_android_data_matcher()
+# driver.find_elements_by_android_data_matcher()
+# driver.find_element_by_android_view_matcher()
+# driver.find_element_by_android_viewtag()
+# driver.find_elements_by_android_viewtag()
+# driver.find_element_by_android_uiautomator()
+# driver.find_elements_by_android_uiautomator()
+
+
+
+
 
 def plus():
     # 使用packageName+Activity打开会先弹出对话框
@@ -98,13 +120,46 @@ def plus():
     driver.find_element_by_id("com.miui.calculator:id/digit_3").click()
     time.sleep(1)
     driver.find_element_by_id("com.miui.calculator:id/btn_equal_s").click()
-    time.sleep(1)
+    time.sleep(2)
+    # driver.find_element_by_class_name('android.widget.TextView').click()
+    # text_views = driver.find_elements_by_class_name("android.widget.TextView")
+    # for text_view in text_views:
+    #     print(text_view.text)
     
     # swipe driver.swipe(start_x, start_y, end_x, end_y, duration=None)：
     # 参数分别是起点坐标的x,y和终点坐标的x,y，以及滑动时间，滑动事件的单位是ms
     # 滑动到第二页“换算”
-    driver.swipe()
+    # driver.swipe()
     # driver.swipe(start_x, start_y, end_x, end_y, duration=None)：参数分别是起点坐标的x,y和终点坐标的x,y，以及滑动时间，滑动事件的单位是ms。
+    # driver.quit()
+def test():
+        # 打印当前包名
+    print(f"Current package: {driver.current_package}")
+    # 打印当前界面名
+    print(f"Current activity: {driver.current_activity}")
+    
+    # 安装应用
+    # driver.install_app("path")
+    # # 卸载应用
+    # driver.remove_app(app_id)
+    # # 检查应用是否安装
+    # driver.is_app_installed(app_id)
+    
+    # 在脚本内启动其他应用
+    driver.start_activity('appPackage', 'appActivity')
+    
+    # 关闭应用   这种关闭呢，是关闭驱动对象，同时关闭所有关联的应用，关闭后我们是无法使用脚本操作应用的。
     driver.quit()
-
-# plus()
+    
+    # 我们只想关闭当前操作的应用，不关闭驱动对象，我们就可以使用driver.close_app()方法。
+    driver.close_app()
+    
+    # 重置应用  相当于“恢复出厂默认值”的效果
+    driver.reset()
+    
+    # 将应用置于后台
+    driver.background_app(seconds)
+    
+    
+plus()
+test()

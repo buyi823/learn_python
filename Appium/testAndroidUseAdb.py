@@ -1,17 +1,54 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 # By Blaine 2021-11-02 16:54
-# 用adb 命令执行测试
+# 用python + adb 命令执行测试
 
 import os
 import time
+from appium import webdriver
 
 
 print('Start test....')
 print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
 time.sleep(2)
 
-os.popen('adb shell input keyevent 210')
+# https://blog.csdn.net/duoluo9/article/details/79791988   adb 命令大全
+
+# 使用keyevetn 打开calculator
+# os.popen('adb shell input keyevent 210')
+
+# =========== adb shell am start==================
+# 使用另一个命令打开 adb shell am start
+os.popen('adb shell am start com.miui.calculator')
+
+# adb shell am start其他用法
+# -W参数  输出内容如下：
+# os.popen('adb shell am start -W com.miui.calculator')
+# Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] pkg=com.miui.calculator }
+# Status: ok
+# LaunchState: WARM
+# Activity: com.miui.calculator/.cal.CalculatorActivity
+# TotalTime: 121   应用自身启动耗时=ThisTime+应用application等资源启动时间
+# WaitTime: 123  系统启动应用耗时=TotalTime+系统资源启动时间
+# Complete
+
+# adb shell am start [options] <INTENT>
+# os.popen('adb shell am start -n com.android.settings/.Settings')
+
+# adb shell am broadcast [options]<INTENT>  下面例子我没有测试成功，不知道为啥
+# 举例：adb shell am broadcast -a "action_finish" （发送一个广播去关闭一个activity）
+# 举例：adb shell am broadcast -a android.intent.action.MASTER_CLEAR（恢复出厂设置的方法，会清除内存所有内容）
+# 举例：adb shell am broadcast -n com.lt.test/.MyBroadcast
+
+# adb shell am start -n 包名+类名（-n 类名,-a action,-d date,-m MIME-TYPE,-c category,-e 扩展数据,等
+# 添加网络DialogActivity
+# os.popen('adb shell am start -n com.android.settings/com.android.settings.wifi.WifiDialogActivity')
+
+# 强制关闭应用
+# os.open('adb shell am force-stop com.miui.calculator')
+# =================================================
+
+
 
 app = 'calculator'
 time.sleep(2)
@@ -25,6 +62,7 @@ if app in appPackage_Activity:
     print('Open calculator successfully.')
 else:
     print('Failed to open calculator.')
+    
     
 # os.popen('adb logcat > d:\\logs\\calculator.txt')
 # 试了一下可以抓到log,有个想法，运行测试开始就开始抓log并保存，每隔一段时间就抓log

@@ -39,7 +39,7 @@ def getAdbLog():
 if __name__ == '__main__':
     
     if isDeviceConnect():
-        # abs() 正数 
+        # abs() 绝对值 
         interval = abs(int(input('请输入抓log间隔时间(单位秒),请输入正整数后回车： ')))
         times = abs(int(input('请输入您想抓取log的次数，请输入正整数后回车： ')))
         getAdbLog()
