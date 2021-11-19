@@ -13,6 +13,7 @@ import xlwt
 import pandas as pd
 from pandas import DataFrame
 import numpy as np
+from xlwt.Workbook import Workbook
 
 
 # Check that your device is connected properly
@@ -68,19 +69,22 @@ def getDeviceInfo():
 
 
 # use pandas
-def pandas_exportInfo():
-    # 目前可以生成标题正确的EXCEL，不知道怎么写入数据
-    title = ["Device Name", "Platform Version", "Device Product", 
-            "Device Physical Size", "Device Density", "Device Battery", "appPackage Activity"]
-    df1 = pd.DataFrame(columns=title)
-    df1.to_excel("PhoneInfo.xlsx", sheet_name='Phone Information', index=False, header=True)
+# def pandas_exportInfo():
+#     # 目前可以生成标题正确的EXCEL，不知道怎么写入数据
+#     title = ["Device Name", "Platform Version", "Device Product", 
+#             "Device Physical Size", "Device Density", "Device Battery", "appPackage Activity"]
+#     df1 = pd.DataFrame(columns=title)
+#     df1.to_excel("PhoneInfo.xlsx", sheet_name='Phone Information', index=False, header=True)
     
     
 
 # Export DUT information to Excel
 # xlwt最大只支持256列
 # 可以生成EXCEL，写入的循环有问题
-def create_file(content):
+content = ['test', 'test']
+output_file = 'PhoneInfo.xls'
+
+def create_file(output_file):
     # init style
     style_head = xlwt.XFStyle()
     # init font
@@ -97,7 +101,6 @@ def create_file(content):
     # 6 = Magenta, 7 = Cyan, 16 = Maroon, 17 = Dark Green, 18 = Dark Blue, 19 = Dark Yellow , almost brown), 
     # 20 = Dark Magenta, 21 = Teal, 22 = Light Gray, 23 = Dark Gray
     bg.pattern_fore_colour = 4
-    
     # set font
     style_head.font = font
     # set background
@@ -108,36 +111,43 @@ def create_file(content):
     # add worksheet
     sheet = excel.add_sheet("The Phone Information")
     # xlwt中是行和列都是从0开始计算的
-    first_col_1 = sheet.col(1)
-    first_col_3 = sheet.col(7)
-    # 设置创建时间宽度
-    first_col_1.width = 256 * 50
+    col_1 = sheet.col(0)
+    col_2 = sheet.col(1)
+    col_3 = sheet.col(2)
+    col_4 = sheet.col(3)
+    col_5 = sheet.col(4)
+    col_6 = sheet.col(5)
+    col_7 = sheet.col(6)
     # 设置存储路径列宽度
-    first_col_3.width = 256 * 100
+    col_1.width = 256 * 25
+    col_2.width = 256 * 25
+    col_3.width = 256 * 25
+    col_4.width = 256 * 25
+    col_5.width = 256 * 25
+    col_6.width = 256 * 25
+    col_7.width = 256 * 25
+    
     # title info
     head = ["Device Name", "Platform Version", "Device Product", 
             "Device Physical Size", "Device Density", "Device Battery", "appPackage Activity"]
+        
     # create title
     for index, value in enumerate(head):
         sheet.write(0, index, value, style_head)
+            
      
     # 循环写入   （这里有问题总报错 ）
     # for index, value_list in enumerate(content, 1):
     #     for i, value in enumerate(value_list):
     #         sheet.write(index, i, value)
-    
-    file_name = "PhoneInfo"
-    excel.save("./%s.xls" % file_name)
-    return file_name
-    
+    excel.save(output_file)
 
 
 
 if __name__ == '__main__':
     if isDeviceConnect():
         getDeviceInfo()
-        # create_file(getDeviceInfo())
-        pandas_exportInfo()
+        create_file(output_file)
     
 
 
