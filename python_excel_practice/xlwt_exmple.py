@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import xlwt
 
 def setup(self):
         if self.report.ftype == REPORT.XLS:
