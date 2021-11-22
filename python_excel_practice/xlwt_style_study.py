@@ -74,6 +74,6 @@ while i < 64:
     sheet.write_merge(2, 4, 4, 5, u'合并')
     i = i + 1
     
-book.save('test_file' + time.strftime("%Y%m%d%H%M%S")+'.xls')
+book.save('test_file_' + time.strftime("%Y%m%d%H%M%S")+'.xls')
     
     
