@@ -115,7 +115,7 @@ if __name__ == '__main__':
     for i in range(len(row2)):
         sheet.write(2, i, row2[i], contentStyle)   
     
-    # 如何生成个数字连续的举行，他奶奶的想不明白
+    # 如何生成个数字连续的矩形，他奶奶的想不明白
     # for i in range(9):
     #     for j in range(8):
     #         sheet.write(3+i, j, j)      

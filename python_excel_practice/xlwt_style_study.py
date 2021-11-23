@@ -71,7 +71,7 @@ while i < 64:
     sheet.write(i, 3, u'边框', style3)
     
     # 合并单元格，合并第2行到第4行的第4列到第5列
-    sheet.write_merge(2, 4, 4, 5, u'合并')
+    sheet.write_merge(2, 4, 4, 5, u'合并',style2)
     i = i + 1
     
 book.save('test_file_' + time.strftime("%Y%m%d%H%M%S")+'.xls')
