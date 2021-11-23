@@ -30,10 +30,10 @@ def getAdbLog():
         # 放在当前目录了, 以抓log时间命名
         os.popen('adb logcat > log_{time}.txt'.format(time=time.strftime('%Y%m%d%H%M%S', time.localtime())))
         print(f'第{i+1}次获取抓取成功......{time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime())}')
-        i += 1
         # 抓取LOG的间隔时间可以设置
         print(f'waiting {interval}s.....')
         time.sleep(interval)
+        i += 1
 
 
 if __name__ == '__main__':
@@ -43,9 +43,3 @@ if __name__ == '__main__':
         interval = abs(int(input('请输入抓log间隔时间(单位秒),请输入正整数后回车： ')))
         times = abs(int(input('请输入您想抓取log的次数，请输入正整数后回车： ')))
         getAdbLog()
-
-# 生成以当前时间命名的文件
-# uuid_str = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime())
-# tmp_file_name = '%s.txt' % uuid_str
-# with open(tmp_file_name, 'a') as f:
-#     f.write("{}\n\n".format(str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))))
