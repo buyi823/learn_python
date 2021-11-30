@@ -80,8 +80,12 @@ def getDeviceInfo():
     # 每个应用程序的内存上限
     # dalvik_vm_heapsize = os.popen('adb shell getprop dalvik.vm.heapsize')
     
+    # 显示手机可用输入法
+    list_method = os.popen('adb shell ime list -s').read().rstrip()
+    print(list_method)
+    
     info_list = [deviceName, platformVersion, device_product, device_sdk_version ,device_cpu, device_memory, device_physicalSize, device_density,
-                 device_battery, appPackage_Activity]
+                 device_battery, appPackage_Activity, list_method]
     
     return info_list
 
@@ -191,6 +195,7 @@ if __name__ == '__main__':
     col_8 = sheet.col(7)
     col_9 = sheet.col(8)
     col_10 = sheet.col(9)
+    col_11 = sheet.col(10)
     # 设置存储路径列宽度
     col_1.width = 256 * 25
     col_2.width = 256 * 20
@@ -202,11 +207,12 @@ if __name__ == '__main__':
     col_8.width = 256 * 75
     col_9.width = 256 * 75
     col_10.width = 256 * 75
+    col_11.width = 256 * 50
     
     
     # title info
     head = ["Device Name", "Platform Version", "Device Product", "Device SDK Version", "Device Hardware", "Device Memory",
-            "Device Physical Size", "Device Density", "Device Battery", "appPackage Activity"]
+            "Device Physical Size", "Device Density", "Device Battery", "appPackage Activity", "IME"]
     
     # 获取getDeviceInfo()中打印的数据
     deviceInfo = getDeviceInfo()
