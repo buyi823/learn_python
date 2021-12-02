@@ -51,7 +51,8 @@ elif driver.network_connection== 4:
     print("Network: 4 Data Only")
 else:
     print("Network: 6 All network on")
-    
+
+# driver.set_network_connection(1) 设置网络为飞行模式    
 # python 3.10后支持match...case语句，与其他与他switch...case一样，上面语句可以改成这个看着清晰一点
 # match driver.network_connection:
 #     case 0:
@@ -87,13 +88,15 @@ else:
 # y=825).move_to(x=450, y=1125).release().perform()
 
 # 获取元素的方法
-# driver.find_element_by_id()
-# driver.find_element_by_name()
-# driver.find_element_by_class_name()
+# driver.find_element_by_id()   对应 resource-id
+# driver.find_element_by_name()  
+# driver.find_element_by_class_name()  对应 class name 
+# 名字不唯一，可以使用下标定位 如driver.find_elements_by_class_name('android.widget.TextView')[1]
+
 # driver.find_element_by_tag_name()
 # driver.find_element_link_text()
 # driver.find_element_partial_link_text()
-# driver.find_element_by_accessibility_id()
+# driver.find_element_by_accessibility_id() 对应 content-desc
 # driver.find_elements_by_accessibility_id()
 # driver.find_element_by_xpath()
 # driver.find_element_by_css_selector()
@@ -145,7 +148,7 @@ def test():
     # 打印当前界面名
     print(f"Current activity: {driver.current_activity}")
     
-    
+    TouchAction(driver).tap(x=500, y=800).perform() # 随便点下，要不下面的语句有其他元素挡着了
     # 需要获取元素的位置和大小的时候使用
     buttonEqual = driver.find_element_by_id("com.miui.calculator:id/btn_equal_s")
     print(buttonEqual.location)
