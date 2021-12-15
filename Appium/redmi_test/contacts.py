@@ -3,11 +3,14 @@
 # By Blaine 2021-12-02 10:10
 # Contacts Testing
  
+from typing import final
 from appium import webdriver
 import time
 from appium.webdriver.common.touch_action import TouchAction
 import os
 import traceback
+import xlwt
+from xlwt.Workbook import Workbook
 
 # contacts = {
 #     'platformName': 'Android',
@@ -35,13 +38,14 @@ import traceback
 createContact()
 新建手机存储空间的联系人，没有执行完成的话报错，抓LOG，LOG以当前时间命名
 报错不一定是手机问题，也可能是没有找到相关的元素导致失败。
+将报错信息和测试结果报错到Excel
 
 '''
 
 def createContact():
     try:
         
-        for i in range(1, 3):
+        for i in range(1, 11):
             # 打开联系人界面在dialer界面，点击联系人,下面两种方式都可以点击成功
             # driver.find_element_by_xpath("//*[@text='联系人']").click()
             driver.find_element_by_xpath("//android.widget.TextView[@text='联系人']").click()
@@ -72,14 +76,45 @@ def createContact():
             time.sleep(1)
             driver.press_keycode(4)
             time.sleep(1)
+        #############################这里不对，需要修改#########################   
+        # 报错信息不知道该怎么处理，在except中处理的话，如果没有报错就不执行，finally中就会报错显示没有定义这个变量
+        # 这样感觉代码过于繁琐
+        traceinfo = traceback.print_exc()
+        #############################这里不对，需要修改#########################   
             
     except Exception as e:
         print(e)
-        traceback.print_exc() # 会打印详细Traceback信息
+        # 会打印详细Traceback信息
+        traceinfo = traceback.print_exc()
+        
+    finally: 
         os.popen('adb logcat > log_{time}.txt'.format(time=time.strftime('%Y%m%d%H%M%S', time.localtime())))
-        logname = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime())
+        logname = 'log_' + time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime()) + '.txt'
         print(f"Log抓取成功{logname}")
-           
+        # 测试通过率
+        testResult = format(i / 11, '.2%') 
+        
+        
+        #############################这里不对，需要修改#########################      
+        # 报错信息
+        if traceinfo != 'None':
+            print(traceinfo)
+        #####################################################################
+        
+        # 把上面的信息导出到Excel
+        book = xlwt.Workbook(encoding='UTF-8')
+        sheet = book.add_sheet('Contact Test Result')
+        # 生成的Excel中的标题和内容
+        excelTitle = ['Traceback', 'Log Name', 'Test Result']
+        excelContent = [traceinfo, logname, testResult]
+        # create title
+        for index, value in enumerate(excelTitle):
+            sheet.write(0, index, value)  
+         # 循环写入获取的数据 
+        for index, value in enumerate(excelContent):
+            sheet.write(1, index, value)   
+        book.save('ContactsTestResult_' + time.strftime("%Y%m%d%H%M%S") + '.xls')
+        print('请查看测试结果')
 
 if __name__ == '__main__':
     # 初始化Appium配置信息
