@@ -1,0 +1,1 @@
+score    line    time    scorePtime    linePtime    scorePline    date/n20       2       72.00   0.28          0.03         10.00         2021-12-15 18:15:24/n
